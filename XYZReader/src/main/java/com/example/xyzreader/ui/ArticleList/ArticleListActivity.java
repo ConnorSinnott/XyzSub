@@ -1,17 +1,17 @@
 package com.example.xyzreader.ui.ArticleList;
 
-import android.app.LoaderManager;
 import android.app.SharedElementCallback;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -36,7 +36,7 @@ import java.util.Map;
  * To setup correct return transitions, for when the user has changed pages before returning,
  * I followed the example of alexjlockwood at https://github.com/alexjlockwood/activity-transitions
  */
-public class ArticleListActivity extends ActionBarActivity implements
+public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -125,7 +125,7 @@ public class ArticleListActivity extends ActionBarActivity implements
             startService(new Intent(this, UpdaterService.class));
         }
 
-        getLoaderManager().initLoader(0, null, this);
+        getSupportLoaderManager().initLoader(0, null, this);
 
     }
 

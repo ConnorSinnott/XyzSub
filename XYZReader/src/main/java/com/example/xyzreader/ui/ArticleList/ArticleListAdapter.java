@@ -1,9 +1,9 @@
 package com.example.xyzreader.ui.ArticleList;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -22,10 +22,10 @@ import com.example.xyzreader.ui.Other.ImageLoaderHelper;
  */
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
-    private Activity mContext;
+    private AppCompatActivity mContext;
     private Cursor mCursor;
 
-    public ArticleListAdapter(Activity parentActivity, Cursor cursor) {
+    public ArticleListAdapter(AppCompatActivity parentActivity, Cursor cursor) {
         mCursor = cursor;
         mContext = parentActivity;
     }

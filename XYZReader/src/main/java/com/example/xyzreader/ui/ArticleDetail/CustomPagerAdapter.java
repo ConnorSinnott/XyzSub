@@ -16,13 +16,12 @@
 
 package com.example.xyzreader.ui.ArticleDetail;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v13.app.FragmentCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +75,7 @@ public abstract class CustomPagerAdapter extends PagerAdapter {
     private ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
     private Fragment mCurrentPrimaryItem = null;
 
-    public CustomPagerAdapter(FragmentManager fm) {
+    public CustomPagerAdapter(android.support.v4.app.FragmentManager fm) {
         mFragmentManager = fm;
     }
 
@@ -118,8 +117,8 @@ public abstract class CustomPagerAdapter extends PagerAdapter {
         while (mFragments.size() <= position) {
             mFragments.add(null);
         }
-        FragmentCompat.setMenuVisibility(fragment, false);
-        FragmentCompat.setUserVisibleHint(fragment, false);
+        fragment.setMenuVisibility(false);
+        fragment.setUserVisibleHint(false);
         mFragments.set(position, fragment);
         mCurTransaction.add(container.getId(), fragment);
 
@@ -149,12 +148,12 @@ public abstract class CustomPagerAdapter extends PagerAdapter {
         Fragment fragment = (Fragment) object;
         if (fragment != mCurrentPrimaryItem) {
             if (mCurrentPrimaryItem != null) {
-                FragmentCompat.setMenuVisibility(mCurrentPrimaryItem, false);
-                FragmentCompat.setUserVisibleHint(mCurrentPrimaryItem, false);
+                mCurrentPrimaryItem.setMenuVisibility(false);
+                mCurrentPrimaryItem.setUserVisibleHint(false);
             }
             if (fragment != null) {
-                FragmentCompat.setMenuVisibility(fragment, true);
-                FragmentCompat.setUserVisibleHint(fragment, true);
+                fragment.setMenuVisibility(true);
+                fragment.setUserVisibleHint(true);
             }
             mCurrentPrimaryItem = fragment;
         }
@@ -218,7 +217,7 @@ public abstract class CustomPagerAdapter extends PagerAdapter {
                         while (mFragments.size() <= index) {
                             mFragments.add(null);
                         }
-                        FragmentCompat.setMenuVisibility(f, false);
+                        f.setMenuVisibility(false);
                         mFragments.set(index, f);
                     } else {
 //                        Log.w(TAG, "Bad fragment at key " + key);

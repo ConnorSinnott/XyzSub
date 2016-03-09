@@ -1,18 +1,18 @@
 package com.example.xyzreader.ui.ArticleDetail;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.LoaderManager;
 import android.app.SharedElementCallback;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * An activity representing a single Article detail screen, letting you swipe between articles.
  */
-public class ArticleDetailActivity extends ActionBarActivity
+public class ArticleDetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
@@ -86,7 +86,7 @@ public class ArticleDetailActivity extends ActionBarActivity
         }
         setContentView(R.layout.activity_article_detail);
 
-        getLoaderManager().initLoader(0, null, this);
+        getSupportLoaderManager().initLoader(0, null, this);
 
         if (savedInstanceState == null && getIntent() != null && getIntent().getData() != null) {
             mStartId = ItemsContract.Items.getItemId(getIntent().getData());
@@ -96,7 +96,7 @@ public class ArticleDetailActivity extends ActionBarActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return ArticleLoader.newAllArticlesInstance(this);
+        return ArticleLoader.newAllArticlesInstance(ArticleDetailActivity.this);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class ArticleDetailActivity extends ActionBarActivity
 
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
 
-        mPagerAdapter = new MyPagerAdapter(getFragmentManager());
+        mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(mPagerAdapter);
 
         pager.setPageMargin((int) TypedValue
